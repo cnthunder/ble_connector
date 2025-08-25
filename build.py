@@ -38,16 +38,11 @@ def main():
         "--windowed",  # 如果是 GUI 应用程序
         "--clean",
         "--noconfirm",
-        # 添加数据文件
-        "--add-data", f"{project_dir / '.venv' / 'Scripts' / 'ble-scan.exe'};.",
-        "--add-data", f"{project_dir / '.venv' / 'Scripts' / 'ble-serial.exe'};.",
-        # 添加其他必要的文件
-        "--add-data", f"{project_dir / 'conf.json'};." if (project_dir / "conf.json").exists() else "",
         # 隐藏导入（根据需要添加）
         "--hidden-import", "PyQt5.QtCore",
         "--hidden-import", "PyQt5.QtGui",
         "--hidden-import", "PyQt5.QtWidgets",
-        "--hidden-import", "psutil",
+        "--hidden-import", "ble-serial",
         str(script_path)
     ]
     
@@ -68,8 +63,6 @@ def main():
     # 复制虚拟环境中的必要 DLL 文件（如果需要）
     copy_dll_files(project_dir, dist_path / app_name)
     
-    # 创建启动脚本（可选）
-    create_launch_script(dist_path / app_name)
     
     print(f"应用程序已创建在: {dist_path / app_name}")
 
@@ -85,15 +78,6 @@ def copy_dll_files(project_dir, app_dir):
             shutil.copy2(dll_path, app_dir)
             print(f"已复制: {dll_path.name}")
 
-def create_launch_script(app_dir):
-    """创建启动脚本（可选）"""
-    bat_content = """@echo off
-echo 启动 BLE 连接器...
-start "" "BLEConnector.exe"
-"""
-    
-    with open(app_dir / "启动BLE连接器.bat", "w", encoding="utf-8") as f:
-        f.write(bat_content)
 
 if __name__ == "__main__":
     main()

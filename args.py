@@ -72,29 +72,9 @@ def config_to_args(config):
     tcp_port = config['DEFAULT'].get('tcp_port', '')
     args.tcp_port = int(tcp_port) if tcp_port.isdigit() else None
     
-    # 运行检查
-    # client_checks(None, args)
-    # server_checks(None, args)
-    
     return args
 
-def client_checks(parser: ArgumentParser, args: Namespace):
-    if args.gap_role != 'client':
-        return # not applicable
-    if not args.device and not args.service_uuid:
-        if parser:
-            parser.error('at least one of -d/--dev and -s/--service-uuid required')
-        else:
-            raise ValueError('at least one of device and service_uuid required in client mode')
 
-def server_checks(parser: ArgumentParser, args: Namespace):
-    if args.gap_role != 'server':
-        return # not applicable
-    if not args.service_uuid:
-        if parser:
-            parser.error('Server role requires -s/--service-uuid')
-        else:
-            raise ValueError('Server role requires service_uuid')
 
 def parse_args() -> Namespace:
     """替代原来的parse_args函数，从INI文件读取配置"""
