@@ -6,7 +6,7 @@
 安装完成后，按win+R键，或者开始->运行，输入cmd，运行cmd窗口
 在cmd窗口中执行ble-com-setup.exe，待自动完成即可。
 运行成功后可以在设备管理器中看到com0com-serial port emulators，点开前面的小箭头，确保能看到COM9<->BLE字样就说明成功了。
-//这里我已经安装并且初始化过了，所以就不演示了
+
 
 二、程序使用说明：
 运行BLEConnector.exe
@@ -27,3 +27,4 @@
 基于com0com Null-modem emulator实现蓝牙虚拟串口创建；
 com0com下载地址：https://sourceforge.net/projects/signed-drivers/files/com0com/v3.0/
 本程序在github开源：https://github.com/cnthunder/ble_connector
+用deepseek写的，我只负责指挥AI。。。
