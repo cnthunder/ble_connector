@@ -1,0 +1,3 @@
+@echo off
+echo 启动 BLE 连接器...
+start "" "BLEConnector.exe"
